@@ -34,3 +34,4 @@ def vote(position, candidate):
  
 if __name__ == '__main__':  
    app.run()
+   

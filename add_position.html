@@ -26,47 +26,42 @@
     &nbsp;
     <div class="card" style="width: 90%; margin: auto; padding: 2%;">
         <div class="card-header">
-            VOTE PAGE
+            Admin Page |
+            Add Positions and Candidates
         </div>
-        <form action="/filter">
+        <form action="/add_candidates">
             <div class="input-group mb-2">
-                <span class="input-group-text">POSITIONS</span>
-                <select class="form-select" name="positions" aria-label="positions">
-                    <option selected>president</option>
-                    <option>vice president</option>
-                    <option>gensec</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                </select>
+                <span class="input-group-text">Position</span>
+                <input class="form-control" type="text" id="positions" name="positions">
             </div>
             <div class="input-group mb-2">
-                <span class="input-group-text">CANDIDATES</span>
-                <select class="form-select" name="candidates" aria-label="candidates">
-                    <option selected>candidate1</option>
-                    <option>candidate2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
+                <span class="input-group-text">Candidate Name</span>
+                <input class="form-control" type="text" id="candidate_name" name="candidate_name">   
+            </div>
+            <div class="input-group mb-2">
+                <span class="input-group-text">Brief Prospectus</span>
+                <input class="form-control" type="text" id="prospectus" name="prospectus">   
+            </div>
+
+            
+            <div class="input-group mb-2">
+                <span class="input-group-text">Graduation Year</span>
+                <select class="form-select" name="graduationyear" aria-label="graduationyear">
+                    <option selected>2025</option>
+                    <option>2026</option>
+                    <option>2027</option>
+                    <option>2028</option>
                 </select>
+
             </div>
             <div class="col-8">
-                <button type="submit" class="btn btn-primary">VOTE</button>
+                
+                <button type="submit" class="btn btn-primary">ADD CANDIDATE</button>
             </div>
         </form>
     </div>
-    </body>
-</html>
-            
 
+
+
+
+    &nbsp;

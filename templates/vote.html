@@ -31,19 +31,10 @@
         <form action="/voting">
             <div class="input-group mb-2">
                 <span class="input-group-text">POSITIONS</span>
-                <select class
-                ="form-select" name="positions" aria-label="positions">
-                    <option selected>president</option>
-                    <option>vice president</option>
-                    <option>gensec</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
+                <select class="form-select" name="positions" aria-label="positions" id="positions">
+                    {% for position in votes.keys() %}
+                    <option value={{position}}>{{ position }}</option>
+                    {% endfor %}
                 </select>
             </div>
             <div class="input-group mb-2">

@@ -33,7 +33,7 @@ def add():
     
     all_candidates.append(details)
     print(all_candidates)
-    return render_template('add_position.html', details_list_in_html=all_candidates)
+    return render_template('add_position.html', all_candidates=all_candidates)
 
 def add_position(position):
     votes[position]={}
@@ -47,7 +47,6 @@ def vote():
     candidate= request.args.get('candidates')
     print(position)
     print(candidate)
-    
     votes[position][candidate] = votes[position][candidate] + 1
     return render_template('vote.html')
 

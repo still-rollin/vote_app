@@ -29,9 +29,8 @@ def add():
     graduation_yearlist.append(graduation_year)
   
     details=(position,candidate_name,prospectus,graduation_year)
-    vote[position][candidate_name] = 0
-   
-    
+    add_position(position)
+    add_member(position,candidate_name)
     all_candidates.append(details)
     print(all_candidates)
     return render_template('add_position.html', all_candidates=all_candidates)
@@ -39,16 +38,15 @@ def add():
 def add_position(position):
     votes[position]={}
 def add_member(position, candidate):
-    votes[position][candidate] = {}
+    votes[position][candidate] =0
     
     
 @app.route("/voting")
 def vote():
-    position = request.args.get('positions') 
-    candidate= request.args.get('candidates')
-    print(position)
-    print(candidate)
-    votes[position][candidate] = votes[position][candidate] + 1
+    position=request.args.get('positions')
+    candidate_name=request.args.get('candidates')
+    print(position,candidate_name)
+    votes[position][candidate_name] = votes[position][candidate] + 1
     return render_template('vote.html')
 
 

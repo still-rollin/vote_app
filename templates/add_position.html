@@ -65,3 +65,40 @@
 
 
     &nbsp;
+
+    <div class="card" style="width: 90%; margin: auto; padding: 2%">
+        <div class="card-header">
+            Existing Candidates
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Position</th>
+                    <th scope="col">Candidate</th>
+                    <th scope="col">Graduation Year</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for details in candidates_list_in_html %}
+                <tr>
+                    <td>{{ details[0] }}</td>
+                    <td>{{ details[1] }} </td>
+                    <td>{{ details[3] }}</td>
+                    <td>
+                        <form action="/update">
+                            <input class="form-control" type="hidden" id="fname" name="val" value={{booking[3]}}>
+                            <button type="submit" class="btn btn-primary">Prospectus</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+
+
+        </a>
+    </div>
+    
+    </body>
+    </html>

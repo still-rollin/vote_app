@@ -18,7 +18,7 @@ def random():
     return render_template('vote.html') 
 @app.route("/add_candidates")
 def add():
-    position = request.args.get('position') 
+    position = request.args.get('positions') 
     positionslist.append(position)
 
     candidate_name=request.args.get('candidate_name')

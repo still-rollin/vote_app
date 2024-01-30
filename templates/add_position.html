@@ -29,7 +29,7 @@
             Admin Page |
             Add Positions and Candidates
         </div>
-        <form action="/add_candidates" Method="Post">
+        <form action="/add_candidates">
             <div class="input-group mb-2">
                 <span class="input-group-text">Position</span>
                 <input class="form-control" type="text" id="positions" name="positions">
@@ -79,7 +79,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for details in candidates_list_in_html %}
+                {% for details in all_candidates %}
                 <tr>
                     <td>{{ details[0] }}</td>
                     <td>{{ details[1] }} </td>

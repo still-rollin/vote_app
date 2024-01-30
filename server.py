@@ -30,7 +30,7 @@ def add():
     details=(position,candidate_name,prospectus,graduation_year)
     add_position(position,votes)
     add_member(position,candidate_name,votes)
-    print("yes")
+    print("yes1")
     print(votes)
     all_candidates.append(details)
     print(all_candidates)

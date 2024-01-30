@@ -33,7 +33,7 @@ def add():
     
     all_candidates.append(details)
     print(all_candidates)
-    return render_template('index.html', details_list_in_html=all_candidates)
+    return render_template('add_position.html', details_list_in_html=all_candidates)
 
 def add_position(position):
     votes[position]={}

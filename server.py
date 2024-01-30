@@ -29,6 +29,7 @@ def add():
     graduation_yearlist.append(graduation_year)
   
     details=(position,candidate_name,prospectus,graduation_year)
+    vote[position][candidate_name] = 0
    
     
     all_candidates.append(details)
@@ -49,6 +50,9 @@ def vote():
     print(candidate)
     votes[position][candidate] = votes[position][candidate] + 1
     return render_template('vote.html')
+
+
+
 
 
     

@@ -17,11 +17,6 @@ app = Flask(__name__)
 def random():
     return render_template('vote.html') 
 @app.route("/add_candidates")
-
-def add_position(position,votes):
-    votes[position]={}
-def add_member(position, candidate,votes):
-    votes[position][candidate] =0
 def add():
     position = request.args.get('positions') 
     positionslist.append(position)

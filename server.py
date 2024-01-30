@@ -6,9 +6,8 @@ positionslist=[]
 candidateslist=[]
 prospectuslist=[]
 graduation_yearlist=[]
-all_candidates=[]
-
- 
+all_candidates=[] 
+random=[]
 # instance of flask application
 app = Flask(__name__)
  

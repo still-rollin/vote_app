@@ -2,6 +2,7 @@
 from flask import Flask,render_template, request
 from flask_mail import Mail, Message 
 votes={}
+
  
 # instance of flask application
 app = Flask(__name__)
@@ -14,7 +15,9 @@ def random():
 def add_position(position):
     votes[position]={}
 def add_member(postion, candidate):
-    votes[position][candidate] = 0  
+    votes[position][candidate] = {}
+    
+    
 @app.route("/voting")
 def vote(position, candidate):
     votes[position][candidate] = votes[position][candidate] + 1

@@ -16,7 +16,9 @@ app = Flask(__name__)
 def random():
     status_message="Welcome"
     return render_template('vote.html',votes=votes,status_message=status_message)
- 
+ @app.errorhandler(404)
+def not_found(e):
+  return render_template('home.html'), 404
 @app.route("/add_candidates")
 def add():
     position = request.args.get('positions') 

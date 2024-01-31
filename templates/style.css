@@ -4,13 +4,4 @@ body {
     color: black;
     font-size: 25px;
   }
-  .container {
-    border: 1px solid black;
-    height: 200px;
-    text-align: center;
-}
   
-  .dark-mode {
-    background-color: black;
-    color: white;
-  }

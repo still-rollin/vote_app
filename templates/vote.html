@@ -14,7 +14,7 @@
             <div id="navbarSupportedContent" style="margin-right: 0%;">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/cabservices"></a>
+                        <a class="nav-link active" aria-current="page" href="/add_candidates">Current Election</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/about">About</a>
@@ -31,34 +31,33 @@
         <form action="/voting">
             <div class="input-group mb-2">
                 <span class="input-group-text">POSITIONS</span>
-                <select class="form-select" name="positions" aria-label="positions" id="positions">
-                    {% for position in votes.keys() %}
+                <select class="form-select" name="positions" aria-label="positions" id="positions" >
+
+                    {% for position,candidates in votes.items() %}
                     <option value={{position}}>{{ position }}</option>
                     {% endfor %}
                 </select>
             </div>
             <div class="input-group mb-2">
                 <span class="input-group-text">CANDIDATES</span>
-                <select class="form-select" name="candidates" aria-label="candidates">
+                <select class="form-select" name="candidates" id="candidates" aria-label="candidates">
                     <option selected>candidate1</option>
                     <option>candidate2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
+                    <option>candidate3</option>
                 </select>
             </div>
             <div class="col-8">
                 <button type="submit" class="btn btn-primary">VOTE</button>
             </div>
+
         </form>
+    </div>
+
+    <div> <span class="badge bg-primary">{{status_message}}</span>
+
     </div>
     </body>
 </html>
+
             
 

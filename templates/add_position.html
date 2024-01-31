@@ -14,7 +14,7 @@
             <div id="navbarSupportedContent" style="margin-right: 0%;">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/cabservices"></a>
+                        <a class="nav-link active" aria-current="page" href="/add_candidates">Current Elections</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/about">About</a>
@@ -84,20 +84,12 @@
                     <td>{{ details[0] }}</td>
                     <td>{{ details[1] }} </td>
                     <td>{{ details[3] }}</td>
-                    <td>
-                        <form action="/update">
-                            <input class="form-control" type="hidden" id="fname" name="val" value={{details[3]}}>
-                            <button type="submit" class="btn btn-primary">Prospectus</button>
-                        </form>
-                    </td>
+                    <td>{{ details[2] }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
 
         </table>
-
-
-        </a>
     </div>
     
     </body>

@@ -32,26 +32,34 @@
             VOTE PAGE
         </div>
 
-        <form action="/voting">
+        <form action="/selectposition">
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="inputPassword4">Bits id</label>
-                    <input type="text" class="form-control" name="bitsid" id="bitsid" placeholder="Password">
+                    <label for="inputBitsId4">Bits id</label>
+                    <input type="text" class="form-control" name="bitsid" id="bitsid" placeholder="BITSID">
                 </div>
             <div class="input-group mb-2">
                 <span class="input-group-text">POSITIONS</span>
                 <select class="form-select" name="positions" aria-label="positions" id="positions" >
 
-                    {% for position,candidates in votes.items() %}
+                    {% for position in positions %}
                     <option value={{position}}>{{ position }}</option>
                     {% endfor %}
-                </select>
+                </select> 
             </div>
+            </div>
+            <div class="col-8">
+                <button type="submit" class="btn btn-primary">View Candidates</button>
+            </div>
+            </form>
+            <form action="/voting">
             <div class="input-group mb-2">
                 <span class="input-group-text">CANDIDATES</span>
                 <select class="form-select" name="candidates" id="candidates" aria-label="candidates">
-                    <option selected>candidate1</option>
-                    <option>candidate2</option>
+                    {% for candidate in candidates %}
+                    <option value={{candidate}}>{{ candidate }}</option>
+                    {% endfor %}
+            
                 </select>
             </div>
             <div class="col-8">
@@ -66,6 +74,3 @@
     </div>
     </body>
 </html>
-
-            
-

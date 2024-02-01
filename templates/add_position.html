@@ -83,12 +83,12 @@
                 </tr>
             </thead>
             <tbody>
-                {% for details in all_candidates %}
+                {% for candidate in all_candidates %}
                 <tr>
-                    <td>{{ details[0] }}</td>
-                    <td>{{ details[1] }} </td>
-                    <td>{{ details[3] }}</td>
-                    <td>{{ details[2] }}</td>
+                    <td>{{ candidate.position }}</td>
+                    <td>{{ candidate.name}} </td>
+                    <td>GY</td>
+                    <td>MANIFESTO</td>
                 </tr>
                 {% endfor %}
             </tbody>

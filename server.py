@@ -1,6 +1,7 @@
 #import flask module
 from flask import Flask,render_template, request
 
+
 votes={}
 positionslist=[]
 candidateslist=[]
@@ -8,19 +9,19 @@ prospectuslist=[]
 graduation_yearlist=[]
 all_candidates=[] 
 random=[]
-# instance of flask application
+bitsidlist=[]
+votedlist=[]
+
 app = Flask(__name__)
- 
-# home route that returns below text when root url is accessed
+
 @app.route("/") 
 def random():
     status_message="Welcome"
     return render_template('vote.html',votes=votes,status_message=status_message)
- @app.errorhandler(404)
-def not_found(e):
-  return render_template('home.html'), 404
+
 @app.route("/add_candidates")
 def add():
+    
     position = request.args.get('positions') 
     candidate_name=request.args.get('candidate_name')
     prospectus=request.args.get('prospectus')
@@ -43,19 +44,24 @@ def add():
     print(all_candidates)
     return render_template('add_position.html', all_candidates=all_candidates)
 
-def add_position(position,votes):
-    if(position not in votes):
+def add_position(position, votes):
+    if(position not in votes ):
         votes[position]={}
         
 def add_member(position, candidate,votes):
-    if(position  in votes and candidate not in votes[position]):
+    if(position  in votes and candidate not in votes[position] ):
         votes[position][candidate] =0
 
 @app.route("/voting")
 def vote():
+    
     position=request.args.get('positions')
     candidate_name=request.args.get('candidates')
-    if(position is None or candidate_name is None ):
+    bitsid=request.args.get('bitsid')
+    if(bitsid in bitsidlist   ):
+        status_message="Already voted"
+        return render_template('vote.html',votes=votes,status_message=status_message)
+    if(position is None or candidate_name is None   ):
         status_message=""
         return render_template('vote.html',votes=votes,status_message=status_message)
     if(position not in votes or candidate_name not in votes[position] ):
@@ -63,6 +69,7 @@ def vote():
         return render_template('vote.html',votes=votes,status_message=status_message)
     print("PRINT HERE")
     votes[position][candidate_name] =votes[position][candidate_name]+ 1
+    bitsidlist.append(bitsid)
     print('HELLO')
     print(votes)
     status_message="Voted Successfully for  "+ candidate_name
@@ -75,15 +82,23 @@ def selectposition():
     print(position)
     status_message=''
     return render_template('vote.html',votes=votes,status_message=status_message)
-
+@app.route("/results")
+def results():
+    return render_template('results.html')
 @app.route("/about")
 def about():
     return render_template('about.html')
+@app.route('/name/<username>')
+def greet_user(username):
+    return render_template('hiname.html',username=username)
 
-@app.route("/results")
-def about1():
-    return render_template('results.html',votes=votes)
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('home.html'), 404
+
+
 
 if __name__ == '__main__':  
    app.run()
+   
    

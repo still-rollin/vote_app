@@ -138,6 +138,11 @@ def greet_user(username):
 def page_not_found(e):
     return render_template('home.html'), 404
 
+
+@app.errorhandler(500)
+def page_not_found(e):
+    return render_template('home.html'), 500
+
 if __name__ == '__main__':
      
     db.create_all()

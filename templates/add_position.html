@@ -49,7 +49,7 @@
             
             <div class="input-group mb-2">
                 <span class="input-group-text">Graduation Year</span>
-                <select class="form-select" name="graduationyear" aria-label="graduationyear">
+                <select class="form-select" name="graduation_year" aria-label="graduationyear">
                     <option selected>2025</option>
                     <option>2026</option>
                     <option>2027</option>
@@ -87,8 +87,8 @@
                 <tr>
                     <td>{{ candidate.position }}</td>
                     <td>{{ candidate.name}} </td>
-                    <td>GY</td>
-                    <td>MANIFESTO</td>
+                    <td>{{candidate.graduation_year}}</td>
+                    <td>{{candidate.manifesto}}</td>
                 </tr>
                 {% endfor %}
             </tbody>

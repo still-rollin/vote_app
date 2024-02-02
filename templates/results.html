@@ -27,13 +27,24 @@
             </div>
         </div>
     </nav>
+    <form action="/selectpositionforresult">
+        <div class="form-row">
+        <div class="input-group mb-2">
+            <span class="input-group-text">POSITIONS</span>
+            <select class="form-select" name="positions" aria-label="positions" id="positions" >
 
-    {% for position,candidates in votes.items() %}
-    <span>
-        <h3>{{ position }}</h3>
-    </span>
+                {% for position in positions %}
+                <option value={{position}}>{{ position }}</option>
+                {% endfor %}
+            </select> 
+        </div>
+        </div>
+        <div class="col-8">
+            <button type="submit" class="btn btn-primary">View Results</button>
+        </div>
+        </form>
 
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>CANDIDATE</th>
@@ -41,14 +52,14 @@
             </tr>
         </thead>
         <tbody>
-            {% for candidate,vote in candidates.items() %}
+            {% for candidate in candidates %}
             <tr>
-                <td>{{ candidate }}</td>
-                <td>{{ vote }} </td>
+                <td>{{candidate.name}}</td>
+                <td>{{candidate.votes}} </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    {% endfor %}
+   
 </body>
 </html>

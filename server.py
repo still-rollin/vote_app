@@ -15,11 +15,14 @@ class Candidate(db.Model):
     name = db.Column(db.String(100), nullable=False)
     votes = db.Column(db.Integer, default=0)
     position=db.Column(db.String(100),nullable=False)
+    graduation_year=db.Column(db.String(100),nullable=False)
+    manifesto=db.Column(db.String(100),nullable=False)
     
     def __repr__(self):
         return '<Candidate %r>' % self.name
 with app.app_context():
     db.create_all()
+    
     
 def get_positions():
     positions = db.session.query(Candidate.position).distinct().all()
@@ -27,19 +30,22 @@ def get_positions():
     print(values)
     return values
 def get_candidates(position):
-    
     candidates= db.session.query(Candidate.name).filter(Candidate.position == position).distinct().all()
     values =[name[0] for name in candidates]
     print(values)
     return values
+def get_candidate_row(position):
+    candidates= db.session.query(Candidate).filter(Candidate.position == position).distinct().all()
+    return candidates
+
     
     
-def create_candidate(name,votes,position):
+def create_candidate(name,votes,position,graduation_year,manifesto):
     existing_candidate = Candidate.query.filter_by(name=name, position=position).first()
 
     if existing_candidate:
         return "Candidate already exists!"
-    new_candidate = Candidate(name=name,votes=votes,position=position)
+    new_candidate = Candidate(name=name,votes=votes,position=position,graduation_year=graduation_year,manifesto=manifesto)
     db.session.add(new_candidate)
     db.session.commit()
 
@@ -67,18 +73,18 @@ def add():
     position = request.args.get('positions') 
     candidate_name=request.args.get('candidate_name')
     prospectus=request.args.get('prospectus')
-    graduation_year=request.args.get('graduationyear')
+    graduation_year=request.args.get('graduation_year')
+    print(position,candidate_name,prospectus,graduation_year)
     
     if position is None or candidate_name is None or prospectus is None or graduation_year is None:
         return render_template('add_position.html',all_candidates=read_candidates() )
     if len(position)==0 or len(candidate_name)==0  or len(prospectus)==0 or len(graduation_year)==0:
         return render_template('add_position.html',all_candidates=read_candidates())
     details=(position,candidate_name,prospectus,graduation_year)
+    print(details)
     add_position(position,votes)
     add_member(position,candidate_name,votes)
-    create_candidate(candidate_name,0,position)
-    
-    
+    create_candidate(candidate_name,0,position,graduation_year,prospectus)
     return render_template('add_position.html', all_candidates=read_candidates())
 
 def add_position(position, votes):
@@ -121,10 +127,20 @@ def selectposition():
     selected_position=position
     status_message=''
     return render_template('vote.html',status_message=status_message,positions=get_positions(),candidates=get_candidates(position))
-    
+ 
+@app.route("/selectpositionforresult")
+def selectpositionforresults(): 
+    position=request.args.get('positions')
+    global selected_position
+    selected_position=position
+    print("here")
+    print(get_candidates(position))
+    print(get_candidate_row(position))
+    return render_template('results.html',positions=get_positions(),candidates=get_candidate_row(position))
+
 @app.route("/results")
 def results():
-    return render_template('results.html')
+    return render_template('results.html',positions=get_positions(),candidates=get_candidates(''))
 
 @app.route("/about")
 def about():
@@ -144,7 +160,6 @@ def page_not_found(e):
     return render_template('home.html'), 500
 
 if __name__ == '__main__':
-     
     db.create_all()
     app.run(debug=True)
     

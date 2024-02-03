@@ -21,6 +21,7 @@ class Candidate(db.Model):
         return '<Candidate %r>' % self.name
 with app.app_context():
     db.create_all()
+   
     
     
 def get_positions():
@@ -110,8 +111,8 @@ def vote():
     candidate_to_vote=search_candidate(candidate_name,selected_position)
     candidate_to_vote.votes=candidate_to_vote.votes + 1
     bitsidlist.append(bitsid)
-    #print('HELLO')
-    #print(votes)
+    print("HERE")
+    print(bitsidlist)
     status_message="Voted Successfully for  "+ candidate_name
     db.session.commit()
     return render_template('vote.html',status_message=status_message,positions=get_positions(),candidates=get_candidates(''))

@@ -21,6 +21,7 @@ class Candidate(db.Model):
         return '<Candidate %r>' % self.name
 with app.app_context():
     db.create_all()
+    db.drop_all()
     
     
 def get_positions():
@@ -51,6 +52,7 @@ def search_candidate(name,position):
     return candidates[0]
 votes={}
 bitsidlist=[]
+
 def read_candidates():
     all_candidates=[] 
     candidates = Candidate.query.all()
@@ -88,7 +90,7 @@ def add_position(position, votes):
     if(position not in votes ):
         votes[position]={}
         
-def add_member(position, candidate,votes):
+def add_member(position,candidate,votes):
     if(position  in votes and candidate not in votes[position] ):
         votes[position][candidate] =0
 
@@ -158,6 +160,7 @@ def page_not_found(e):
 
 if __name__ == '__main__':
     db.create_all()
+    db.drop_all()
     app.run(debug=True)
     
   

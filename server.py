@@ -21,7 +21,6 @@ class Candidate(db.Model):
         return '<Candidate %r>' % self.name
 with app.app_context():
     db.create_all()
-    db.drop_all()
     
     
 def get_positions():
@@ -160,7 +159,6 @@ def page_not_found(e):
 
 if __name__ == '__main__':
     db.create_all()
-    db.drop_all()
     app.run(debug=True)
     
   
